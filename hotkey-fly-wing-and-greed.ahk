@@ -1,8 +1,10 @@
-#HotIf WinActive("ahk_class Ragnarok")
+; #HotIf WinActive("ahk_class Ragnarok")
 
+toggle := 0
 
-z:: {
-    while 1 { ; need to find a way to toggle this
+z:: { ; start the spam
+    global toggle := !toggle
+    while toggle {
         send "{7}" ; fly wing hotkey
         sleep 1300
         send "{8}" ; spam greed
@@ -17,6 +19,8 @@ z:: {
         sleep 50
     }
 }
-return
 
-c:: Pause ; only way you can pause the script. you could either reload the script again or exit the app and then open it again
+c::
+{
+    global toggle := !toggle ; reset the toggle to 0, then you press spam key again to start the loop
+}
